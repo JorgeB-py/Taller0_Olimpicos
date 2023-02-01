@@ -10,6 +10,7 @@ import java.util.Map;
 
 import uniandes.dpoo.taller0.modelo.Atleta;
 import uniandes.dpoo.taller0.modelo.Genero;
+import uniandes.dpoo.taller0.modelo.Pais;
 import uniandes.dpoo.taller0.procesamiento.CalculadoraEstadisticas;
 import uniandes.dpoo.taller0.procesamiento.LoaderOlimpicos;
 
@@ -62,7 +63,9 @@ public class ConsolaOlimpicos
 					ejecutarMedallistasPorNacionYGenero();
 				else if (opcion_seleccionada == 12 && calculadora != null)
 					ejecutarPorcentajeMedallistas();
-				else if (opcion_seleccionada == 13)
+				else if  (opcion_seleccionada == 13  && calculadora != null)
+					ejecutarPaisAtleta();
+				else if (opcion_seleccionada == 14)
 				{
 					System.out.println("Saliendo de la aplicación ...");
 					continuar = false;
@@ -102,12 +105,20 @@ public class ConsolaOlimpicos
 		System.out.println("10. Consultar el atleta todoterreno");
 		System.out.println("11. Consultar los medallistas por país y género");
 		System.out.println("12. Consultar el porcentaje de atletas que son medallistas");
-		System.out.println("13. Salir de la aplicación\n");
+		System.out.println("13. Consultar pais que un atleta representa");
+		System.out.println("14. Salir de la aplicación\n");
 	}
 
 	/**
 	 * Le muestra el usuario el porcentaje de atletas que son medallistas
 	 */
+	
+	private void ejecutarPaisAtleta() {
+		String atleta = input("Ingrese el nombre del atleta");
+		System.out.println("\n"+"Pais al que representa "+ atleta +"\n");
+		String respuesta= calculadora.paisAtleta(atleta);
+		System.out.println("El pais al que representa "+ atleta+ " es: "+ respuesta);
+	}
 	private void ejecutarPorcentajeMedallistas()
 	{
 		System.out.println("\n" + "Porcentaje de atletas que son medallistas" + "\n");
@@ -373,7 +384,7 @@ public class ConsolaOlimpicos
 	{
 		System.out.println("\n" + "Cargar un archivo de atletas" + "\n");
 
-		String archivo = input("Por favor ingrese el nombre del archivo CSV con los atletas");
+		String archivo = "./data/atletas.csv";
 		try
 		{
 			calculadora = LoaderOlimpicos.cargarArchivo(archivo);

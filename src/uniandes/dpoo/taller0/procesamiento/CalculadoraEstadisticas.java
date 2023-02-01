@@ -410,20 +410,23 @@ public class CalculadoraEstadisticas
 		return elPais;
 	}
 	
-	public Pais paisAtleta(String nombreatleta) {
+	public String paisAtleta(String nombreatleta) {
 		
 		Atleta elAtleta = null;
 		Pais paisatleta = null;
+		String respuesta = null;
 		
 		for (int i =0; i < atletas.size() && elAtleta == null; i++) {
 			if (atletas.get(i).darNombre().equals(nombreatleta)) {
 				elAtleta = atletas.get(i);
 				paisatleta = elAtleta.darPais();
+				respuesta = paisatleta.darNombre();
+				
 				
 			}
 		}
 		
-		return paisatleta;
+		return respuesta;
 		}
 		
 
